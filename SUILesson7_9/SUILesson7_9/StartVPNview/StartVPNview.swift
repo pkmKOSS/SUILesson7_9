@@ -37,7 +37,7 @@ struct StartVPNview: View {
             VPNflagAndToggle()
             vpnToggleView
             connectionInfoView
-            messageAboutCountOfDays
+            messageAboutCountOfDaysView
         }
     }
 
@@ -107,29 +107,33 @@ struct StartVPNview: View {
         )
     }
 
-    private var messageAboutCountOfDays: some View {
+    private var messageAboutCountOfDaysView: some View {
         Text(Constants.messageAboutCountOFDaysName)
     }
 }
 
+/// Представление экрана с тоглом ВПН
 struct VPNflagAndToggle: View {
+
+    // MARK: - public properties
+
+    var body: some View {
+        Image(Constants.vpnImageName)
+            .resizable()
+            .frame(width: Constants.vpnImageSize, height: Constants.vpnImageSize)
+            .scaleEffect(x: Constants.imageScaleCoef , y: Constants.imageScaleCoef)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .cornerRadius(Constants.vpnCornerRadius)
+    }
 
     // MARK: - private constants
 
-    private enum Constant {
+    private enum Constants {
         static let vpnImageName = "flag"
         static let vpnImageSize: CGFloat = 230
         static let vpnScaleEffectCoef: CGFloat = 10
         static let vpnCornerRadius: CGFloat = 122
         static let imageScaleCoef: CGFloat = 0.85
-    }
-    var body: some View {
-        Image(Constant.vpnImageName)
-            .resizable()
-            .frame(width: Constant.vpnImageSize, height: Constant.vpnImageSize)
-            .scaleEffect(x: Constant.imageScaleCoef , y: Constant.imageScaleCoef)
-            .foregroundColor(.white)
-            .background(Color.red)
-            .cornerRadius(Constant.vpnCornerRadius)
     }
 }

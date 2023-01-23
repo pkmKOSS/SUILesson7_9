@@ -26,9 +26,8 @@ struct TapView: View {
         static let basketTag = 2
         static let themeTag = 3
     }
-    @ObservedObject var settingsViewModel = SettingsViewModel()
-    @State var selected = 0
-    @State var tarif: Tariff? = nil
+
+    // MARK: - public propertie
 
     var body: some View {
         TabView(selection: $selected) {
@@ -54,6 +53,12 @@ struct TapView: View {
                 }.tag(Constants.themeImageName)
         }.environment(\.colorScheme, settingsViewModel.isDarkModeON ? .dark : .light)
     }
+
+    // MARK: - private properties
+
+    @ObservedObject private var settingsViewModel = SettingsViewModel()
+    @State private var selected = 0
+    @State private var tarif: Tariff? = nil
 }
 
 struct ContentView_Previews: PreviewProvider {

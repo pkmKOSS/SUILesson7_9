@@ -68,7 +68,7 @@ struct PurchaseView: View {
         }
     }
 
-    // MARK: - private constants
+    // MARK: - private properties
 
     @Binding var selected: Int
     @Binding var tarif: Tariff?
