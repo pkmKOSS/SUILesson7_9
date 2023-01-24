@@ -34,7 +34,7 @@ struct StartVPNview: View {
 
     var body: some View {
         VStack {
-            VPNflagAndToggle()
+            VPNflagAndToggleView()
             vpnToggleView
             connectionInfoView
             messageAboutCountOfDaysView
@@ -113,7 +113,7 @@ struct StartVPNview: View {
 }
 
 /// Представление экрана с тоглом ВПН
-struct VPNflagAndToggle: View {
+struct VPNflagAndToggleView: View {
 
     // MARK: - public properties
 

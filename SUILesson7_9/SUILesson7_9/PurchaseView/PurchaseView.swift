@@ -41,39 +41,46 @@ struct PurchaseView: View {
                     VStack {
                         ForEach(0..<tariffsLine.tarrifs.count) {
                             let tariff = tariffsLine.tarrifs[$0]
-
                             VStack {
-                                Image(tariff.imageName)
-                                    .frame(width: Constants.imageSize,  height: Constants.imageSize)
-                                    .scaleEffect(x: Constants.imageScaleCoef, y: Constants.imageScaleCoef)
-                                    .padding(Constants.defaultBottomOffset)
-
-                                Text("Vacation (\(tariff.countOfDays) days) \(tariff.cost) RUB")
-                                    .padding(Constants.defaultBottomOffset)
-                                
-                                Button {
-                                    self.selected = Constants.selectedIndex
-                                    self.tarif = tariff
-                                } label: {
-                                    Text(Constants.buyName)
-                                }
-                                .frame(width: Constants.eightySize, height: Constants.fourtySize)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
+                                tarrifImageView(tariff: tariff)
+                                vacationTarrifTextView(tariff: tariff)
+                                buyButtonView(tariff: tariff)
                             }
                         }
                     }
-                }.padding(EdgeInsets(top: Constants.thirtyOffset, leading: Constants.zeroOffset, bottom: Constants.zeroOffset, trailing: Constants.zeroOffset))
+                }
+                .padding(EdgeInsets(top: Constants.thirtyOffset, leading: Constants.zeroOffset, bottom: Constants.zeroOffset, trailing: Constants.zeroOffset))
             }
         }
     }
 
     // MARK: - private properties
 
-    @Binding var selected: Int
-    @Binding var tarif: Tariff?
+    @Binding private var selected: Int
+    @Binding private var tarif: Tariff
 
     // MARK: - private properties
 
     private let tariffsLine = TarrifsLine()
+    private func tarrifImageView(tariff: Tariff) -> some View {
+        Image(tariff.imageName)
+            .frame(width: Constants.imageSize,  height: Constants.imageSize)
+            .scaleEffect(x: Constants.imageScaleCoef, y: Constants.imageScaleCoef)
+            .padding(Constants.defaultBottomOffset)
+    }
+    private func vacationTarrifTextView(tariff: Tariff) -> some View {
+        Text("Vacation (\(tariff.countOfDays) days) \(tariff.cost) RUB")
+            .padding(Constants.defaultBottomOffset)
+    }
+    private func buyButtonView(tariff: Tariff) -> some View {
+        Button {
+            self.selected = Constants.selectedIndex
+            self.tarif = tariff
+        } label: {
+            Text(Constants.buyName)
+        }
+        .frame(width: Constants.eightySize, height: Constants.fourtySize)
+        .background(Color.blue)
+        .foregroundColor(.white)
+    }
 }

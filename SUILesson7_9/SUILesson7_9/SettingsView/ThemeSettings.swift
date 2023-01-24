@@ -19,6 +19,8 @@ final class SettingsViewModel: ObservableObject {
 struct ThemeSettings: View {
 
     // MARK: - public properties
+
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         HStack {
@@ -26,11 +28,9 @@ struct ThemeSettings: View {
             Picker("Тема", selection: $viewModel.isDarkModeON) {
                 Text("Темная").tag(true)
                 Text("Светлая").tag(false)
-            }.pickerStyle(.segmented)
-        }.padding()
+            }
+            .pickerStyle(.segmented)
+        }
+        .padding()
     }
-
-    // MARK: - private properties
-
-    @ObservedObject var viewModel: SettingsViewModel
 }

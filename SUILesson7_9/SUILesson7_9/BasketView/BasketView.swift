@@ -27,44 +27,40 @@ struct BasketView: View {
 
     // MARK: - public properites
     
-    @Binding var tariff: Tariff?
+    @Binding var tariff: Tariff
 
     var body: some View {
         VStack {
-            Text(Constants.titleName).font(.largeTitle)
+            Text(Constants.titleName)
+                .font(.largeTitle)
             VStack {
 
                 HStack {
-                    if let tariff = tariff {
-                        Text("\(Constants.tarifForName) \(tariff.countOfDays) \(Constants.daysName)")
-                            .font(.headline)
-                            .padding()
-                        Spacer()
-                        Text("\(Constants.priceName) \(tariff.cost) \(Constants.rubName)")
-                            .font(.headline)
-                            .padding()
-
-                    } else {
-                        Text(Constants.basketIsEmptyName)
-                    }
+                    Text("\(Constants.tarifForName) \(tariff.countOfDays) \(Constants.daysName)")
+                        .font(.headline)
+                        .padding()
+                    Spacer()
+                    Text("\(Constants.priceName) \(tariff.cost) \(Constants.rubName)")
+                        .font(.headline)
+                        .padding()
                 }
                 
                 Button {
                     self.isAlertShown.toggle()
                 } label: {
                     Text(Constants.buyName)
-                }.frame(width: Constants.defaultWidth, height: Constants.defaultHeight)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .alert(Constants.successBuyingName, isPresented: $isAlertShown) {
-                        Text(Constants.successBuyingName)
-                    }
+                }
+                .frame(width: Constants.defaultWidth, height: Constants.defaultHeight)
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .alert(Constants.successBuyingName, isPresented: $isAlertShown) {
+                    Text(Constants.successBuyingName)
+                }
             }
         }
     }
 
     // MARK: - private properties
 
-    @State private var title = "Title"
     @State private var isAlertShown = false
 }

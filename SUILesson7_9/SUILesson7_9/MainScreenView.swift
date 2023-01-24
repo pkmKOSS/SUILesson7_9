@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Представление навигации.
+/// Представление навигации по таб бару.
 struct TapView: View {
 
     // MARK: - private constants
@@ -40,7 +40,8 @@ struct TapView: View {
                 .tabItem {
                     Image(systemName: Constants.lineImageName)
                     Text(Constants.purchapseName)
-                }.tag(Constants.purchapseTag)
+                }
+                .tag(Constants.purchapseTag)
             BasketView(tariff: $tarif)
                 .tabItem {
                     Image(systemName: Constants.basketImageName)
@@ -51,14 +52,15 @@ struct TapView: View {
                     Image(systemName: Constants.themeImageName)
                     Text(Constants.themeName)
                 }.tag(Constants.themeImageName)
-        }.environment(\.colorScheme, settingsViewModel.isDarkModeON ? .dark : .light)
+        }
+        .environment(\.colorScheme, settingsViewModel.isDarkModeON ? .dark : .light)
     }
 
     // MARK: - private properties
 
     @ObservedObject private var settingsViewModel = SettingsViewModel()
     @State private var selected = 0
-    @State private var tarif: Tariff? = nil
+    @State private var tarif = Tariff(countOfDays: 0, cost: 0, imageName: "Free")
 }
 
 struct ContentView_Previews: PreviewProvider {
